@@ -1,0 +1,34 @@
+INPUT_PARAMETERS
+
+#Parameters (1.General)
+ntype                   2
+symmetry		0		# When doing md calculations, turn off symmetry
+nspin			1		# 1 means non spin 
+
+#Parameters (2.Iteration)
+ecutwfc                 100             # Rydberg
+scf_thr                 1e-7		# Rydberg
+scf_nmax   		120
+
+#Parameters (3.Basis)
+basis_type              lcao                      
+
+#Parameters (4.Smearing)
+smearing_method		gaussian
+smearing_sigma		0.002
+
+#Parameters (5.Mixing)
+mixing_type		pulay
+mixing_beta		0.4
+
+#Parameters (6.md)
+calculation         	md
+cal_force		1
+cal_stress 		1
+md_nstep            	200   		# md steps
+md_type             	1    		# NVT
+md_dt               	1    		# time step
+md_tfirst           	300  		# the first target temperature
+md_restart          	0    		# whether restart md
+md_dumpfreq         	1   		# The period to dump MD information
+out_stru 		1
