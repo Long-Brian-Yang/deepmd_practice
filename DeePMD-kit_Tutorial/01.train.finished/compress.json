@@ -119,6 +119,7 @@
         "enable_profiler": false,
         "tensorboard": false,
         "tensorboard_log_dir": "log",
-        "tensorboard_freq": 1
+        "tensorboard_freq": 1,
+        "max_ckpt_keep": 5
     }
 }

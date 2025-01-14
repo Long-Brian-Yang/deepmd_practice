@@ -1,7 +1,7 @@
-LAMMPS (2 Aug 2023 - Update 1)
+LAMMPS (29 Aug 2024)
 OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
   using 1 OpenMP thread(s) per MPI task
-Loaded 1 plugins from /root/miniconda3/envs/deepmd/lib/deepmd_lmp
+Loaded 1 plugins from /opt/anaconda3/envs/deepmd/lib/deepmd_lmp
 # gas phase methane
 
 units           metal
@@ -17,26 +17,14 @@ Reading data file ...
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   5 atoms
-  read_data CPU = 0.002 seconds
+  read_data CPU = 0.005 seconds
 mass 		1 1
 mass		2 12
 
 pair_style	deepmd graph.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
-  installed to:       /root/miniconda3/envs/deepmd
-  source:             v2.2.7
-  source branch:       HEAD
-  source commit:      839f4fe7
-  source commit at:   2023-10-27 21:10:24 +0800
-  surpport model ver.:1.1 
-  build variant:      cpu
-  build with tf inc:  /root/miniconda3/envs/deepmd/include;/root/miniconda3/envs/deepmd/include
-  build with tf lib:  /root/miniconda3/envs/deepmd/lib/libtensorflow_cc.so
-  set tf intra_op_parallelism_threads: 0
-  set tf inter_op_parallelism_threads: 0
-  >>> Info of lammps module:
-  use deepmd-kit at:  /root/miniconda3/envs/deepmdpair_coeff	* *
+  installed to:       /opt/anaconda3/envs/deepmdpair_coeff	* *
 
 velocity        all create 50.0 23456789
 fix             1 all nvt temp 50.0 50.0 0.5
@@ -51,6 +39,18 @@ run             5000
 CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
 
 Your simulation uses code contributions which should be cited:
+
+- Type Label Framework: https://doi.org/10.1021/acs.jpcb.3c08419
+
+@Article{Gissinger24,
+ author = {Jacob R. Gissinger, Ilia Nikiforov, Yaser Afshar, Brendon Waters, Moon-ki Choi, Daniel S. Karls, Alexander Stukowski, Wonpil Im, Hendrik Heinz, Axel Kohlmeyer, and Ellad B. Tadmor},
+ title = {Type Label Framework for Bonded Force Fields in LAMMPS},
+ journal = {J. Phys. Chem. B},
+ year =    2024,
+ volume =  128,
+ number =  13,
+ pages =   {3282–-3297}
+}
 
 - USER-DEEPMD package:
 
@@ -155,20 +155,20 @@ Per MPI rank memory allocation (min/avg/max) = 2.559 | 2.559 | 2.559 Mbytes
       4800  -219.7834       0.025050214   -219.75835      48.449222      598.39611      1060.5429    
       4900  -219.78291      0.030199797   -219.75271      58.408949      203.75805      1060.5429    
       5000  -219.77611      0.030245158   -219.74586      58.496682     -300.80549      1060.5429    
-Loop time of 38.8363 on 1 procs for 5000 steps with 5 atoms
+Loop time of 6.69252 on 1 procs for 5000 steps with 5 atoms
 
-Performance: 11.124 ns/day, 2.158 hours/ns, 128.746 timesteps/s, 643.728 atom-step/s
-104.3% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 64.550 ns/day, 0.372 hours/ns, 747.103 timesteps/s, 3.736 katom-step/s
+295.6% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 38.703     | 38.703     | 38.703     |   0.0 | 99.66
-Neigh   | 0.0079815  | 0.0079815  | 0.0079815  |   0.0 |  0.02
-Comm    | 0.0334     | 0.0334     | 0.0334     |   0.0 |  0.09
-Output  | 0.0065195  | 0.0065195  | 0.0065195  |   0.0 |  0.02
-Modify  | 0.070599   | 0.070599   | 0.070599   |   0.0 |  0.18
-Other   |            | 0.01491    |            |       |  0.04
+Pair    | 6.666      | 6.666      | 6.666      |   0.0 | 99.60
+Neigh   | 0.0035543  | 0.0035543  | 0.0035543  |   0.0 |  0.05
+Comm    | 0.0064277  | 0.0064277  | 0.0064277  |   0.0 |  0.10
+Output  | 0.0039441  | 0.0039441  | 0.0039441  |   0.0 |  0.06
+Modify  | 0.0083179  | 0.0083179  | 0.0083179  |   0.0 |  0.12
+Other   |            | 0.004258   |            |       |  0.06
 
 Nlocal:              5 ave           5 max           5 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -183,4 +183,4 @@ Total # of neighbors = 20
 Ave neighs/atom = 4
 Neighbor list builds = 500
 Dangerous builds not checked
-Total wall time: 0:00:39
+Total wall time: 0:00:10
