@@ -1,0 +1,186 @@
+LAMMPS (29 Aug 2024)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+Loaded 1 plugins from /opt/anaconda3/envs/deepmd/lib/deepmd_lmp
+# gas phase methane
+
+units           metal
+boundary        p p p
+atom_style      atomic
+
+neighbor        1.0 bin
+neigh_modify    every 10 delay 0 check no
+
+read_data	conf.lmp
+Reading data file ...
+  triclinic box = (0 0 0) to (10.114259 10.263124 10.216793) with tilt (0.036749877 0.13833062 -0.056322169)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  5 atoms
+  read_data CPU = 0.005 seconds
+mass 		1 1
+mass		2 12
+
+pair_style	deepmd graph-compress.pb
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /opt/anaconda3/envs/deepmdpair_coeff	* *
+
+velocity        all create 50.0 23456789
+fix             1 all nvt temp 50.0 50.0 0.5
+timestep        0.001
+
+thermo_style    custom step pe ke etotal temp press vol
+thermo          100
+dump		1 all custom 100 ch4.dump id type x y z
+
+run             5000
+
+CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
+
+Your simulation uses code contributions which should be cited:
+
+- Type Label Framework: https://doi.org/10.1021/acs.jpcb.3c08419
+
+@Article{Gissinger24,
+ author = {Jacob R. Gissinger, Ilia Nikiforov, Yaser Afshar, Brendon Waters, Moon-ki Choi, Daniel S. Karls, Alexander Stukowski, Wonpil Im, Hendrik Heinz, Axel Kohlmeyer, and Ellad B. Tadmor},
+ title = {Type Label Framework for Bonded Force Fields in LAMMPS},
+ journal = {J. Phys. Chem. B},
+ year =    2024,
+ volume =  128,
+ number =  13,
+ pages =   {3282–-3297}
+}
+
+- USER-DEEPMD package:
+
+@article{Wang_ComputPhysCommun_2018_v228_p178,
+  author = {Wang, Han and Zhang, Linfeng and Han, Jiequn and E, Weinan},
+  doi = {10.1016/j.cpc.2018.03.016},
+  url = {https://doi.org/10.1016/j.cpc.2018.03.016},
+  year = 2018,
+  month = {jul},
+  publisher = {Elsevier {BV}},
+  volume = 228,
+  journal = {Comput. Phys. Commun.},
+  title = {{DeePMD-kit: A deep learning package for many-body potential energy representation and molecular dynamics}},
+  pages = {178--184}
+}
+@misc{Zeng_JChemPhys_2023_v159_p054801,
+  title  = {{DeePMD-kit v2: A software package for deep potential models}},
+  author =   {Jinzhe Zeng and Duo Zhang and Denghui Lu and Pinghui Mo and Zeyu Li
+         and Yixiao Chen and Mari{\'a}n Rynik and Li'ang Huang and Ziyao Li and 
+         Shaochen Shi and Yingze Wang and Haotian Ye and Ping Tuo and Jiabin
+         Yang and Ye Ding and Yifan Li and Davide Tisi and Qiyu Zeng and Han 
+         Bao and Yu Xia and Jiameng Huang and Koki Muraoka and Yibo Wang and 
+         Junhan Chang and Fengbo Yuan and Sigbj{\o}rn L{\o}land Bore and Chun
+         Cai and Yinnian Lin and Bo Wang and Jiayan Xu and Jia-Xin Zhu and 
+         Chenxing Luo and Yuzhi Zhang and Rhys E A Goodall and Wenshuo Liang
+         and Anurag Kumar Singh and Sikai Yao and Jingchao Zhang and Renata
+         Wentzcovitch and Jiequn Han and Jie Liu and Weile Jia and Darrin M
+         York and Weinan E and Roberto Car and Linfeng Zhang and Han Wang},
+  journal =  {J. Chem. Phys.},
+  volume =   159,
+  issue =    5,  
+  year =    2023,
+  pages  =   054801,
+  doi =      {10.1063/5.0155600},
+}
+
+CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE-CITE
+
+Generated 0 of 1 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 10 steps, delay = 0 steps, check = no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 7
+  ghost atom cutoff = 7
+  binsize = 3.5, bins = 3 3 3
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair deepmd, perpetual
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 2.559 | 2.559 | 2.559 Mbytes
+   Step         PotEng         KinEng         TotEng          Temp          Press          Volume    
+         0  -23.990049      0.025852029   -23.964197      50            -641.85579      1060.5429    
+       100  -23.993871      0.029339452   -23.964531      56.744969     -331.63646      1060.5429    
+       200  -23.999105      0.034093175   -23.965012      65.93907       395.78374      1060.5429    
+       300  -23.987654      0.022785878   -23.964868      44.069806      438.83677      1060.5429    
+       400  -23.987433      0.02216287    -23.96527       42.864856      420.18912      1060.5429    
+       500  -23.991893      0.025694113   -23.966199      49.694576      21.723413      1060.5429    
+       600  -23.990851      0.023635717   -23.967216      45.713466     -190.77327      1060.5429    
+       700  -23.990556      0.021775981   -23.96878       42.11658      -326.13448      1060.5429    
+       800  -23.995129      0.024413098   -23.970716      47.216986     -162.66809      1060.5429    
+       900  -23.998027      0.025194641   -23.972832      48.728557      228.8569       1060.5429    
+      1000  -23.992121      0.017290964   -23.97483       33.442179      248.98092      1060.5429    
+      1100  -23.992156      0.014923498   -23.977233      28.8633        275.28424      1060.5429    
+      1200  -23.997762      0.017647064   -23.980115      34.130906      70.888759      1060.5429    
+      1300  -23.990669      0.0092793802  -23.981389      17.947102     -386.03776      1060.5429    
+      1400  -23.998492      0.015179597   -23.983312      29.358618     -478.26756      1060.5429    
+      1500  -23.99391       0.0099049054  -23.984005      19.156921     -361.98671      1060.5429    
+      1600  -23.999786      0.014841584   -23.984944      28.704872     -13.536861      1060.5429    
+      1700  -23.998026      0.012979976   -23.985046      25.104366     -13.815088      1060.5429    
+      1800  -23.99127       0.0070539696  -23.984216      13.642971     -97.125501      1060.5429    
+      1900  -23.994667      0.011507362   -23.983159      22.256206     -300.67254      1060.5429    
+      2000  -24.003493      0.021681128   -23.981812      41.933127      19.400176      1060.5429    
+      2100  -23.993486      0.015638923   -23.977847      30.246994      275.58526      1060.5429    
+      2200  -23.995812      0.022288561   -23.973524      43.107952      188.01564      1060.5429    
+      2300  -24.00408       0.035367379   -23.968712      68.403488      116.21471      1060.5429    
+      2400  -23.984805      0.022573239   -23.962232      43.658544     -172.5638       1060.5429    
+      2500  -23.991704      0.033011296   -23.958693      63.846624      53.256564      1060.5429    
+      2600  -23.991695      0.036504501   -23.95519       70.602778     -46.177667      1060.5429    
+      2700  -23.995855      0.042661314   -23.953194      82.510572      31.305042      1060.5429    
+      2800  -23.987042      0.034384783   -23.952658      66.503064      48.552183      1060.5429    
+      2900  -23.980557      0.028071033   -23.952486      54.29174       211.30977      1060.5429    
+      3000  -23.979538      0.026015941   -23.953522      50.317019     -66.785529      1060.5429    
+      3100  -23.996463      0.039435703   -23.957027      76.271968      123.34205      1060.5429    
+      3200  -23.986478      0.028156551   -23.958321      54.45714       124.79062      1060.5429    
+      3300  -23.992786      0.031150145   -23.961636      60.247003     -107.23395      1060.5429    
+      3400  -23.987395      0.023433078   -23.963962      45.321546      29.761972      1060.5429    
+      3500  -23.999297      0.032553622   -23.966744      62.961444     -241.4589       1060.5429    
+      3600  -23.997087      0.027236372   -23.969851      52.677436     -99.292394      1060.5429    
+      3700  -23.995284      0.023418941   -23.971865      45.294203      138.30972      1060.5429    
+      3800  -23.991979      0.017911608   -23.974067      34.642557      290.47139      1060.5429    
+      3900  -23.993194      0.017797474   -23.975396      34.421812      649.8867       1060.5429    
+      4000  -23.994862      0.017965782   -23.976896      34.747334      446.15547      1060.5429    
+      4100  -23.993729      0.015580886   -23.978148      30.134745      134.78922      1060.5429    
+      4200  -23.997548      0.018018254   -23.97953       34.84882       411.38738      1060.5429    
+      4300  -23.99902       0.01819071    -23.98083       35.182365      557.64469      1060.5429    
+      4400  -23.999185      0.017321365   -23.981864      33.500977      181.2454       1060.5429    
+      4500  -24.000851      0.017934623   -23.982916      34.68707      -217.27149      1060.5429    
+      4600  -24.003508      0.019520085   -23.983987      37.753487      195.81337      1060.5429    
+      4700  -24.002075      0.017594419   -23.984481      34.029088     -26.295325      1060.5429    
+      4800  -23.997782      0.013233403   -23.984549      25.594515     -53.851156      1060.5429    
+      4900  -23.99719       0.012923046   -23.984267      24.994259     -56.6362        1060.5429    
+      5000  -23.99756       0.014148691   -23.983411      27.36476      -102.49803      1060.5429    
+Loop time of 3.88288 on 1 procs for 5000 steps with 5 atoms
+
+Performance: 111.258 ns/day, 0.216 hours/ns, 1287.705 timesteps/s, 6.439 katom-step/s
+173.2% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 3.861      | 3.861      | 3.861      |   0.0 | 99.44
+Neigh   | 0.003047   | 0.003047   | 0.003047   |   0.0 |  0.08
+Comm    | 0.0051387  | 0.0051387  | 0.0051387  |   0.0 |  0.13
+Output  | 0.0037815  | 0.0037815  | 0.0037815  |   0.0 |  0.10
+Modify  | 0.0068563  | 0.0068563  | 0.0068563  |   0.0 |  0.18
+Other   |            | 0.003036   |            |       |  0.08
+
+Nlocal:              5 ave           5 max           5 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:            130 ave         130 max         130 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:           20 ave          20 max          20 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 20
+Ave neighs/atom = 4
+Neighbor list builds = 500
+Dangerous builds not checked
+Total wall time: 0:00:05
